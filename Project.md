@@ -17,9 +17,13 @@ The time series plot (Figure 1) of the monthly air miles of the US from Jan. 196
 
 Since it is a non-stationary problem, first of all, we try to take a log transformation for the U.S air miles series to eliminate the non constant variance.
 
+![21](https://github.com/jqsheng94/Time-Series/blob/master/Output/3-LogData.png)
+
 After taking the log transformation, we can clearly see that the time series plot of the log U.S air miles (Figure 3) is stationary in variance, but the mean is still changing over time, for this problem we can try to take the first difference.
 
 ### 2.2 First differenced-transformation
+
+![22](https://github.com/jqsheng94/Time-Series/blob/master/Output/4-DiffLogData.png)
 
 The first differenced of log time series plot (Figure 4) seems stationary. But we need to test it with ACF and PACF. Here are ACF and PACF of the first differenced of the log series: 
 
