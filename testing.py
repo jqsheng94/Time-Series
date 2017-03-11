@@ -77,6 +77,15 @@ plt.ylim((-0.5,0.5))
 plt.savefig("./Output/4-DiffLogData.png")
 plt.close()
 
+fig5 = plt.figure(figsize=(15,10))
+ax1 = fig5.add_subplot(211)
+fig5 = sm.graphics.tsa.plot_acf(ts2[1:], lags=60, ax=ax1)
+ax2 = fig5.add_subplot(212)
+fig5 = sm.graphics.tsa.plot_pacf(ts2[1:], lags=60, ax=ax2)
+plt.xlabel("Figure 5: ACF and PACF for the first differentiation of log series")
+plt.savefig("./Output/5-FirstDiffAcfPacf.png")
+plt.close()
+
 
 
 
