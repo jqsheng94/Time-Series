@@ -34,7 +34,7 @@ Data = [float(i) for i in Data]
 ts = pd.Series(Data, index=pd.date_range('1/1960', periods=len(Data), freq='M'))
 ts.plot(figsize=(15,10))
 plt.title("Monthly U.S. passenger air miles")
-plt.xlabel('Months')
+plt.xlabel('Figure 1: Time series plot of monthly U.S. air passenger miles from January 1960 to December 1977')
 plt.ylabel('Air miles')
 plt.savefig("./Output/1-Original.png")
 plt.show()
