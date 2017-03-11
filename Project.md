@@ -102,8 +102,8 @@ Then we can compare about AIC for both model 1 and model 2.
 AIC for model 1: -553.11
 AIC for model 2: -552.37
 ```
-![3e1](https://github.com/jqsheng94/Time-Series/blob/master/Output/CodeCogsEqn.gif)
-![3e2](https://github.com/jqsheng94/Time-Series/blob/master/Output/CodeCogsEqn%201.gif)
+![3e1](https://github.com/jqsheng94/Time-Series/blob/master/Output/eq1.gif)
+![3e2](https://github.com/jqsheng94/Time-Series/blob/master/Output/eq2.gif)
 
 
 
