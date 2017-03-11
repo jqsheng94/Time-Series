@@ -6,6 +6,10 @@
 Since the Wright brothers invented the airplane, it has a great influence on human’s life. People can arrive in a faraway place in a short time by plane, which brings a lot of convenience for daily life. At the same time, the airline companies benefit a lot from the increasing number of passengers. In this way, it’s important for companies to consider about the situation of flight in order to make the arrangement. In this paper, we are going to analyze the data of air miles for U.S passengers from Jan.1960 to Dec.1977.
 
 ### 1.2 Original Data
+
+![alt tag](Time-Series/Output/1-Original.png)
+
+
 The time series plot (Figure 1) of the monthly air miles of the US from Jan. 1960 to the end of 1977 shows that the mean of this process changes over time, also the variance is not constant (it fluctuates greatly from the year of 1970). Therefore, this process is non-stationary. Also, the ACF of this process series decays very slowly, which gives the support that the time series is not stationary. 
 
 ## 2. Transformation
