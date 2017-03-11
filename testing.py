@@ -1,4 +1,14 @@
-A = """2.42    2.14    2.28    2.50    2.44    2.72    2.71    2.74    2.55    2.49    2.13    2.28
+
+# Hyndman, R.J. (n.d.) Time Series Data Library,
+# http://robjhyndman.com/TSDL/
+# http://robjhyndman.com/tsdldata/data/cryer6.dat
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import style
+style.use('ggplot')
+
+Data = """2.42    2.14    2.28    2.50    2.44    2.72    2.71    2.74    2.55    2.49    2.13    2.28
 2.35    1.82    2.40    2.46    2.38    2.83    2.68    2.81    2.54    2.54    2.37    2.54
 2.62    2.34    2.68    2.75    2.66    2.96    2.66    2.93    2.70    2.65    2.46    2.59
 2.75    2.45    2.85    2.99    2.89    3.43    3.25    3.59    3.12    3.16    2.86    3.22
@@ -16,17 +26,17 @@ A = """2.42    2.14    2.28    2.50    2.44    2.72    2.71    2.74    2.55    2
 12.64   11.01   13.30   12.19   12.91   14.90   16.10   17.30   12.90   13.36   12.26   13.93
 13.94   12.75   14.19   14.67   14.66   16.21   17.72   18.15   14.19   14.33   12.99   15.19
 15.09   12.94   15.46   15.39   15.34   17.02   18.85   19.49   15.61   16.16   14.84   17.04"""
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.style
+
+
 # matplotlib.style.use('fivethirtyeight')
-A = A.split()
-A = [float(i) for i in A]
-ts = pd.Series(A, index=pd.date_range('1/1960', periods=len(A), freq='M'))
-ts.plot()
+Data = Data.split()
+Data = [float(i) for i in Data]
+ts = pd.Series(Data, index=pd.date_range('1/1960', periods=len(Data), freq='M'))
+ts.plot(figsize=(15,10))
 plt.title("Monthly U.S. passenger air miles")
 plt.xlabel('Months')
 plt.ylabel('Air miles')
+plt.savefig("./Output/1-Original.png")
 plt.show()
 
 
