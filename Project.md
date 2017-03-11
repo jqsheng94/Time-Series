@@ -33,11 +33,11 @@ Combined all of the information what we have already got:  d=1, D=1, P=0, Q=1 to
 After collecting data from both ACF and PACF, the ACF cuts off after seasonal lag 1 and PACF decreases exponentially fast. Our initial guess for seasonal component is (0, 1, 1). When considering ordinary part, it seems that both ACF and PACF are tailing off. Hence, both p and q are greater than 0. Ordinary component could be (1, 1, 1). There is another guess for ordinary component is ACF is tailing off and PACF cuts off after lag 2. In this case, ordinary component is (2, 1, 0)
 We have tried 10 different models which are combinations of our guess or some similar models. Here are 4 simplest models;
 
-```{R}
+```
 Model 1: ARIMA(1, 1, 1) x (0, 1, 1)s=12.
 Model 2: ARIMA(1, 1, 1) x (1, 1, 1)s=12.
 Model 3: ARIMA(2, 1, 0) x (0, 1, 1)s=12.
-Model 4 ARIMA(2, 1, 0) x (1, 1, 1)s=12.
+Model 4: ARIMA(2, 1, 0) x (1, 1, 1)s=12.
 ```
 
 Then we have to check diagnostics of each model. 
@@ -49,7 +49,7 @@ The diagnostics for model 2 is almost the same as model 1. For model 3 and 4, p-
 
 Then we can compare about AIC for both model 1 and model 2.
 
-```{R}
+```
 AIC for model 1: -553.11
 AIC for model 2: -552.37
 ```
@@ -58,14 +58,14 @@ Since model 1 has smaller AIC and less parameters, we choose model 1 as our fina
 
 ### Residual test
 
-```{R}
+```
 W = 0.8789, p-value = 3.981e-12
 ```
 
 Both normal Q-Q plot and histogram show that residuals are approximately normally distributed. In the normal Q-Q plot, some residuals in the left corner and right corner of the graph departure from normality. These values are some extreme values from original data. Although these two graphs indicate that residuals are somewhat close to normality, we run a Shapiro-Wilks test to show the normality. This test gives a very small p-value 3.981e-12. We can make the conclusion that residuals are not normally distributed. 
 
 ### Final model  
-```{R}
+```
 ARIMA(1, 1, 1) x (0, 1, 1)s=12.
 
 AIC=-553.11
@@ -79,7 +79,7 @@ Here is the prediction for next 10 months. As we all can see, the 6th, 7th, 8th,
 
 ### Conclusion
 
-The monthly air passenger miles follow yearly data. Finally, we choose ARIMA(1, 1, 1) x (0, 1, 1)s=12  as our best model. This model shows that passengers are more likely to travel on summer. There is an increasing number of people choose transportation airplane. But one problem of our data is , maybe for some reason, data ended in Dec 1977. This data is so old and we cannot use this data to get meaningful prediction.
+The monthly air passenger miles follow yearly data. Finally, we choose **ARIMA(1, 1, 1) x (0, 1, 1)s=12**  as our best model. This model shows that passengers are more likely to travel on summer. There is an increasing number of people choose transportation airplane. But one problem of our data is , maybe for some reason, data ended in Dec 1977. This data is so old and we cannot use this data to get meaningful prediction.
 
 ### Reference 
 
