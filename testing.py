@@ -112,45 +112,56 @@ results = mod.fit()
 
 residuals = statsmodels.tsa.statespace.sarimax.SARIMAXResults.resid(results)
 resid_std = (residuals - residuals.mean()) / residuals.std()
-Ljung = statsmodels.tsa.statespace.sarimax.SARIMAXResults.test_serial_correlation(results)
-print(Ljung)
-
 
 
 
 ts4 = pd.Series(resid_std[1:], index=pd.date_range('1/1960', periods=len(resid_std[1:]), freq='M'))
-fig8 = ts4.plot(figsize=(15,10))
-plt.title("standarlized Residuals")
-plt.xlim(['1/1959', '1/1978'])
-plt.ylim([-6,6])
-plt.xlabel("Figure 8: Time series plot of standarlized Residuals")
-plt.savefig("./Output/8-residualts.png")
+#fig8 = ts4.plot(figsize=(15,10))
+#plt.title("standarlized Residuals")
+#plt.xlim(['1/1959', '1/1978'])
+#plt.ylim([-6,6])
+#plt.xlabel("Figure 8: Time series plot of standarlized Residuals")
+#plt.savefig("./Output/8-residualts.png")
+#plt.close()
+#
+#
+#
+#fig9 = plt.figure(figsize=(15,10))
+#ax1 = fig9.add_subplot(211)
+#fig9 = sm.graphics.tsa.plot_acf(ts4, lags=60, ax=ax1)
+#ax2 = fig9.add_subplot(212)
+#fig9 = sm.graphics.tsa.plot_pacf(ts4, lags=60, ax=ax2)
+#plt.xlabel("Figure 9: ACF and PACF of standarlized Residuals")
+#plt.savefig("./Output/9-SRfAcfPacf.png")
+#plt.close()
+#
+#
+#
+#
+#fig10 = plt.figure(figsize=(15,10))
+#ax1 = fig10.add_subplot(121)
+#fig10 = graphics.gofplots.qqplot(resid_std[1:], line='r', ax=ax1)
+#plt.title("Normal Q-Q plot")
+#ax2 = fig10.add_subplot(122)
+#fig10 = plt.hist(resid_std[1:], bins=25)
+#plt.title('Histogram of standardized deviance residuals')
+#plt.savefig("./Output/10-QQandHistogram.png")
+#plt.close()
+
+
+
+Forecast = results.predict(start = 215, end= 286, dynamic= True)  
+Forecast = (list(Forecast))
+Forecast = [math.exp(i) for i in Forecast]
+Forecast = pd.Series(Forecast, index=pd.date_range('12/1977', periods=len(Forecast), freq='M'))
+Last5year = ts[144:]
+Last5year.plot(figsize=(15,10))
+Forecast.plot()
+plt.title("U.S. air miles prediction")
+plt.ylabel("U.S. Monthly Airmiles")
+plt.xlabel("Figure 11: Prediction for next 5 years starting from Jan 1978")
+plt.savefig("./Output/11-prediction.png")
 plt.close()
-
-
-
-fig9 = plt.figure(figsize=(15,10))
-ax1 = fig9.add_subplot(211)
-fig9 = sm.graphics.tsa.plot_acf(ts4, lags=60, ax=ax1)
-ax2 = fig9.add_subplot(212)
-fig9 = sm.graphics.tsa.plot_pacf(ts4, lags=60, ax=ax2)
-plt.xlabel("Figure 9: ACF and PACF of standarlized Residuals")
-plt.savefig("./Output/9-SRfAcfPacf.png")
-plt.close()
-
-
-
-
-fig10 = plt.figure(figsize=(15,10))
-ax1 = fig10.add_subplot(121)
-fig10 = graphics.gofplots.qqplot(resid_std[1:], line='r', ax=ax1)
-plt.title("Normal Q-Q plot")
-ax2 = fig10.add_subplot(122)
-fig10 = plt.hist(resid_std[1:], bins=25)
-plt.title('Histogram of standardized deviance residuals')
-plt.savefig("./Output/10-QQandHistogram.png")
-plt.close()
-
 
 
 
