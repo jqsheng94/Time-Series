@@ -22,9 +22,11 @@ import matplotlib.style
 # matplotlib.style.use('fivethirtyeight')
 A = A.split()
 A = [float(i) for i in A]
-print(A)
-ts = pd.Series(A, index=pd.date_range('1/1/2000', periods=len(A)))
+ts = pd.Series(A, index=pd.date_range('1/1960', periods=len(A), freq='M'))
 ts.plot()
+plt.title("Monthly U.S. passenger air miles")
+plt.xlabel('Months')
+plt.ylabel('Air miles')
 plt.show()
 
 
