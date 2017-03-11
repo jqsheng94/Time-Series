@@ -105,7 +105,8 @@ AIC for model 2: -552.37
 ![3e1](https://github.com/jqsheng94/Time-Series/blob/master/Output/eq1.gif)
 ![3e2](https://github.com/jqsheng94/Time-Series/blob/master/Output/eq2.gif)
 
-```AIC=-553.11
+```
+AIC=-553.11
 ```
 
 Since model 1 has smaller AIC and less parameters, we choose model 1 as our final model. Actually, AIC for model 1 is also the smallest among 10 models we have tried before. 
