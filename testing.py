@@ -95,6 +95,16 @@ plt.ylim((-0.5,0.5))
 plt.savefig("./Output/6-SeasonalDiffLogData.png")
 plt.close()
 
+print(ts3[11:])
+fig6 = plt.figure(figsize=(15,10))
+ax1 = fig6.add_subplot(211)
+fig6 = sm.graphics.tsa.plot_acf(ts3[12:], lags=60, ax=ax1)
+ax2 = fig6.add_subplot(212)
+fig6 = sm.graphics.tsa.plot_pacf(ts3[12:], lags=60, ax=ax2)
+plt.xlabel("Figure 7: ACF and PACF of the seasonally differenced series")
+plt.savefig("./Output/7-SeasonalDiffAcfPacf.png")
+plt.close()
+
 
 
 
