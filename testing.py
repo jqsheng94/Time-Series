@@ -3,7 +3,7 @@
 # http://robjhyndman.com/TSDL/
 # http://robjhyndman.com/tsdldata/data/cryer6.dat
 
-
+from scipy import stats
 import statsmodels
 import math
 import pandas as pd
@@ -14,6 +14,7 @@ style.use('ggplot')
 from statsmodels.graphics.tsaplots import plot_acf
 from statsmodels.graphics.tsaplots import plot_pacf
 from statsmodels import api as sm
+from statsmodels import graphics
 
 Data = """2.42    2.14    2.28    2.50    2.44    2.72    2.71    2.74    2.55    2.49    2.13    2.28
 2.35    1.82    2.40    2.46    2.38    2.83    2.68    2.81    2.54    2.54    2.37    2.54
@@ -35,7 +36,6 @@ Data = """2.42    2.14    2.28    2.50    2.44    2.72    2.71    2.74    2.55  
 15.09   12.94   15.46   15.39   15.34   17.02   18.85   19.49   15.61   16.16   14.84   17.04"""
 
 
-# matplotlib.style.use('fivethirtyeight')
 Data = Data.split()
 Data = [float(i) for i in Data]
 ts = pd.Series(Data, index=pd.date_range('1/1960', periods=len(Data), freq='M'))
@@ -95,15 +95,64 @@ plt.ylim((-0.5,0.5))
 plt.savefig("./Output/6-SeasonalDiffLogData.png")
 plt.close()
 
-print(ts3[11:])
-fig6 = plt.figure(figsize=(15,10))
-ax1 = fig6.add_subplot(211)
-fig6 = sm.graphics.tsa.plot_acf(ts3[12:], lags=60, ax=ax1)
-ax2 = fig6.add_subplot(212)
-fig6 = sm.graphics.tsa.plot_pacf(ts3[12:], lags=60, ax=ax2)
+fig7 = plt.figure(figsize=(15,10))
+ax1 = fig7.add_subplot(211)
+fig7 = sm.graphics.tsa.plot_acf(ts3[12:], lags=60, ax=ax1)
+ax2 = fig7.add_subplot(212)
+fig7 = sm.graphics.tsa.plot_pacf(ts3[12:], lags=60, ax=ax2)
 plt.xlabel("Figure 7: ACF and PACF of the seasonally differenced series")
 plt.savefig("./Output/7-SeasonalDiffAcfPacf.png")
 plt.close()
+
+
+mod = sm.tsa.statespace.SARIMAX(ts1, trend='n', order=(1,1,1), seasonal_order=(0,1,1,12))
+results = mod.fit()
+#print (results.summary())
+
+
+residuals = statsmodels.tsa.statespace.sarimax.SARIMAXResults.resid(results)
+resid_std = (residuals - residuals.mean()) / residuals.std()
+Ljung = statsmodels.tsa.statespace.sarimax.SARIMAXResults.test_serial_correlation(results)
+print(Ljung)
+
+
+
+
+ts4 = pd.Series(resid_std[1:], index=pd.date_range('1/1960', periods=len(resid_std[1:]), freq='M'))
+fig8 = ts4.plot(figsize=(15,10))
+plt.title("standarlized Residuals")
+plt.xlim(['1/1959', '1/1978'])
+plt.ylim([-6,6])
+plt.xlabel("Figure 8: Time series plot of standarlized Residuals")
+plt.savefig("./Output/8-residualts.png")
+plt.close()
+
+
+
+fig9 = plt.figure(figsize=(15,10))
+ax1 = fig9.add_subplot(211)
+fig9 = sm.graphics.tsa.plot_acf(ts4, lags=60, ax=ax1)
+ax2 = fig9.add_subplot(212)
+fig9 = sm.graphics.tsa.plot_pacf(ts4, lags=60, ax=ax2)
+plt.xlabel("Figure 9: ACF and PACF of standarlized Residuals")
+plt.savefig("./Output/9-SRfAcfPacf.png")
+plt.close()
+
+
+
+
+fig10 = plt.figure(figsize=(15,10))
+ax1 = fig10.add_subplot(121)
+fig10 = graphics.gofplots.qqplot(resid_std[1:], line='r', ax=ax1)
+plt.title("Normal Q-Q plot")
+ax2 = fig10.add_subplot(122)
+fig10 = plt.hist(resid_std[1:], bins=25)
+plt.title('Histogram of standardized deviance residuals')
+plt.savefig("./Output/10-QQandHistogram.png")
+plt.close()
+
+
+
 
 
 
