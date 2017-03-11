@@ -3,11 +3,17 @@
 # http://robjhyndman.com/TSDL/
 # http://robjhyndman.com/tsdldata/data/cryer6.dat
 
+
+import statsmodels
 import math
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import style
 style.use('ggplot')
+from statsmodels.graphics.tsaplots import plot_acf
+from statsmodels.graphics.tsaplots import plot_pacf
+from statsmodels import api as sm
 
 Data = """2.42    2.14    2.28    2.50    2.44    2.72    2.71    2.74    2.55    2.49    2.13    2.28
 2.35    1.82    2.40    2.46    2.38    2.83    2.68    2.81    2.54    2.54    2.37    2.54
@@ -32,13 +38,24 @@ Data = """2.42    2.14    2.28    2.50    2.44    2.72    2.71    2.74    2.55  
 # matplotlib.style.use('fivethirtyeight')
 Data = Data.split()
 Data = [float(i) for i in Data]
-#ts = pd.Series(Data, index=pd.date_range('1/1960', periods=len(Data), freq='M'))
-#ts.plot(figsize=(15,10))
-#plt.title("Monthly U.S. passenger air miles")
-#plt.xlabel('Figure 1: Time series plot of monthly U.S. air passenger miles from January 1960 to December 1977')
-#plt.ylabel('Air miles')
-#plt.savefig("./Output/1-Original.png")
-#plt.show()
+ts = pd.Series(Data, index=pd.date_range('1/1960', periods=len(Data), freq='M'))
+ts.plot(figsize=(15,10))
+plt.title("Monthly U.S. passenger air miles")
+plt.xlabel('Figure 1: Time series plot of monthly U.S. air passenger miles from January 1960 to December 1977')
+plt.ylabel('Air miles')
+plt.savefig("./Output/1-Original.png")
+plt.close()
+
+
+fig = plt.figure(figsize=(15,10))
+ax1 = fig.add_subplot(211)
+fig = sm.graphics.tsa.plot_acf(ts, lags=24, ax=ax1)
+ax2 = fig.add_subplot(212)
+fig = sm.graphics.tsa.plot_pacf(ts, lags=24, ax=ax2)
+plt.xlabel("Figure 2: ACF and PACF of U.S. monthly air miles")
+plt.savefig("./Output/2-OrgAcfPacf.png")
+plt.close()
+
 
 LogData = [math.log(i) for i in Data]
 ts1 = pd.Series(LogData, index=pd.date_range('1/1960', periods=len(LogData), freq='M'))
@@ -47,7 +64,7 @@ plt.title("Log Monthly U.S. passenger air miles")
 plt.xlabel('Figure 3: Log transformation of U.S. monthly air miles')
 plt.ylabel('Log(Air miles)')
 plt.savefig("./Output/3-LogData.png")
-plt.show()
+plt.close()
 
 
 ts2 = pd.Series(LogData, index=pd.date_range('1/1960', periods=len(LogData), freq='M'))
@@ -58,7 +75,7 @@ plt.xlabel('Figure 4: Take the first diff transformation for series')
 plt.ylabel('Diff (Log (Air miles))')
 plt.ylim((-0.5,0.5))
 plt.savefig("./Output/4-DiffLogData.png")
-plt.show()
+plt.close()
 
 
 
