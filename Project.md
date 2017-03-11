@@ -45,6 +45,7 @@ The time series plot of seasonally differenced ( Figure 6) reveals that the data
 ![232](https://github.com/jqsheng94/Time-Series/blob/master/Output/7-SeasonalDiffAcfPacf.png)
 
 Figure 7 is the ACF and PACF of the seasonally differenced of the first differenced of log U.S air miles. Since we are under the seasonally differenced, we do not need to pay attention to the lags which are between each period. Only the lag 12, 24, 36 … we need to consider. Thus, the ACF cuts off after the first season which is at lag 12 and PACF is infinite in extent, it is give us the seasonal ARIMA ( P,D,Q) model where P=0, Q=1and D=1. Within the seasonal lags, it appears that the ACF tails off and the PACF cuts off after lag2 or tails off, which we need to test with fitted model.
+
 Combined all of the information what we have already got:  d=1, D=1, P=0, Q=1 to give the full seasonal ARIMA (p, d, q) x (P, D, Q)s = ARIMA(p, 1, q) x (0, 1, 1)s=12.
 
 ## 3. Model Selection
@@ -61,6 +62,31 @@ Model 4: ARIMA(2, 1, 0) x (1, 1, 1)s=12.
 
 Then we have to check diagnostics of each model. 
 The diagnostics for model 1 is listed below:  
+
+```
+                                 Statespace Model Results                                 
+==========================================================================================
+Dep. Variable:                                  y   No. Observations:                  216
+Model:             SARIMAX(1, 1, 1)x(0, 1, 1, 12)   Log Likelihood                 280.556
+Date:                            Fri, 10 Mar 2017   AIC                           -553.112
+Time:                                    23:28:28   BIC                           -539.611
+Sample:                                01-31-1960   HQIC                          -547.657
+                                     - 12-31-1977                                         
+Covariance Type:                              opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1          0.4652      0.119      3.918      0.000       0.233       0.698
+ma.L1         -0.7686      0.092     -8.376      0.000      -0.948      -0.589
+ma.S.L12      -0.7357      0.050    -14.628      0.000      -0.834      -0.637
+sigma2         0.0035      0.000     16.955      0.000       0.003       0.004
+===================================================================================
+Ljung-Box (Q):                       26.67   Jarque-Bera (JB):               591.99
+Prob(Q):                              0.95   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.25   Skew:                             0.01
+Prob(H) (two-sided):                  0.00   Kurtosis:                        11.37
+===================================================================================
+```
 
 In the top graph, residuals look stationary except few outliers. These outliers are extreme values from original database. It shows that residuals are uncorrelated in time. The ACF of residuals fluctuate in the band close to 0. It indicates that residuals are independent. None of the residuals are individually significant. Residuals also look like white noise with mean 0 and variance constant. Ljung-Box gives us p-values for model 1. All the points are above 0.5, and most of them are close to 1. This model is adequate and fits data very well.
 
