@@ -3,6 +3,7 @@
 # http://robjhyndman.com/TSDL/
 # http://robjhyndman.com/tsdldata/data/cryer6.dat
 
+import math
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import style
@@ -31,12 +32,32 @@ Data = """2.42    2.14    2.28    2.50    2.44    2.72    2.71    2.74    2.55  
 # matplotlib.style.use('fivethirtyeight')
 Data = Data.split()
 Data = [float(i) for i in Data]
-ts = pd.Series(Data, index=pd.date_range('1/1960', periods=len(Data), freq='M'))
-ts.plot(figsize=(15,10))
-plt.title("Monthly U.S. passenger air miles")
-plt.xlabel('Figure 1: Time series plot of monthly U.S. air passenger miles from January 1960 to December 1977')
-plt.ylabel('Air miles')
-plt.savefig("./Output/1-Original.png")
+#ts = pd.Series(Data, index=pd.date_range('1/1960', periods=len(Data), freq='M'))
+#ts.plot(figsize=(15,10))
+#plt.title("Monthly U.S. passenger air miles")
+#plt.xlabel('Figure 1: Time series plot of monthly U.S. air passenger miles from January 1960 to December 1977')
+#plt.ylabel('Air miles')
+#plt.savefig("./Output/1-Original.png")
+#plt.show()
+
+LogData = [math.log(i) for i in Data]
+ts1 = pd.Series(LogData, index=pd.date_range('1/1960', periods=len(LogData), freq='M'))
+ts1.plot(figsize=(15,10))
+plt.title("Log Monthly U.S. passenger air miles")
+plt.xlabel('Figure 3: Log transformation of U.S. monthly air miles')
+plt.ylabel('Log(Air miles)')
+plt.savefig("./Output/3-LogData.png")
+plt.show()
+
+
+ts2 = pd.Series(LogData, index=pd.date_range('1/1960', periods=len(LogData), freq='M'))
+ts2 = ts2.diff(periods=1)
+ts2.plot(figsize=(15,10))
+plt.title("Log air-miles Diff(d=1)")
+plt.xlabel('Figure 4: Take the first diff transformation for series')
+plt.ylabel('Diff (Log (Air miles))')
+plt.ylim((-0.5,0.5))
+plt.savefig("./Output/4-DiffLogData.png")
 plt.show()
 
 
