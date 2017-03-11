@@ -86,6 +86,16 @@ plt.xlabel("Figure 5: ACF and PACF for the first differentiation of log series")
 plt.savefig("./Output/5-FirstDiffAcfPacf.png")
 plt.close()
 
+ts3 = pd.Series(ts2[1:], index=pd.date_range('2/1960', periods=len(ts2[1:]), freq='M'))
+ts3 = ts3.diff(periods=12)
+ts3.plot(figsize=(15,10))
+plt.title("Seasonally differenced log series (D=1)(d=1)")
+plt.xlabel('Figure 6: Time series plot of seasonally differenced (D=1) for ARIMA(p,d,q)(P,D,Q)')
+plt.ylim((-0.5,0.5))
+plt.savefig("./Output/6-SeasonalDiffLogData.png")
+plt.close()
+
+
 
 
 
