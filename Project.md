@@ -37,7 +37,10 @@ The ACF for the first differencing of log U.S air miles (Figure 5) shows that th
 
 The following plot (Figure 6) is the seasonally differenced (lag=12) of the first differenced of the log series:
 
-The time series plot of seasonally differenced ( Figure 6) reveals that the data becomes stationary, but only a few extreme values in data points around 1967 and 1968
+![231](https://github.com/jqsheng94/Time-Series/blob/master/Output/6-SeasonalDiffLogData.png)
+
+
+The time series plot of seasonally differenced ( Figure 6) reveals that the data becomes stationary, but only a few extreme values in data points around 1967 and 1968.
 
 Figure 7 is the ACF and PACF of the seasonally differenced of the first differenced of log U.S air miles. Since we are under the seasonally differenced, we do not need to pay attention to the lags which are between each period. Only the lag 12, 24, 36 … we need to consider. Thus, the ACF cuts off after the first season which is at lag 12 and PACF is infinite in extent, it is give us the seasonal ARIMA ( P,D,Q) model where P=0, Q=1and D=1. Within the seasonal lags, it appears that the ACF tails off and the PACF cuts off after lag2 or tails off, which we need to test with fitted model.
 Combined all of the information what we have already got:  d=1, D=1, P=0, Q=1 to give the full seasonal ARIMA (p, d, q) x (P, D, Q)s = ARIMA(p, 1, q) x (0, 1, 1)s=12.
