@@ -88,7 +88,11 @@ Prob(H) (two-sided):                  0.00   Kurtosis:                        11
 ===================================================================================
 ```
 
-In the top graph, residuals look stationary except few outliers. These outliers are extreme values from original database. It shows that residuals are uncorrelated in time. The ACF of residuals fluctuate in the band close to 0. It indicates that residuals are independent. None of the residuals are individually significant. Residuals also look like white noise with mean 0 and variance constant. Ljung-Box gives us p-values for model 1. All the points are above 0.5, and most of them are close to 1. This model is adequate and fits data very well.
+![31](https://github.com/jqsheng94/Time-Series/blob/master/Output/8-residualts.png)
+
+![32](https://github.com/jqsheng94/Time-Series/blob/master/Output/9-SRfAcfPacf.png)
+
+In figure 8, residuals look stationary except few outliers. These outliers are extreme values from original database. It shows that residuals are uncorrelated in time. In figure 9,  ACF of residuals fluctuate in the band close to 0. It indicates that residuals are independent. None of the residuals are individually significant. Residuals also look like white noise with mean 0 and variance constant. This model is adequate and fits data very well.
 
 The diagnostics for model 2 is almost the same as model 1. For model 3 and 4, p-values for Ljung-Box statistic are below the blue line which is quite small. We can reject model 3 and 4 since we do not consider about inadequate models. 
 
@@ -102,6 +106,8 @@ AIC for model 2: -552.37
 Since model 1 has smaller AIC and less parameters, we choose model 1 as our final model. Actually, AIC for model 1 is also the smallest among 10 models we have tried before. 
 
 ## 4. Residual test
+
+![41](https://github.com/jqsheng94/Time-Series/blob/master/Output/10-QQandHistogram.png)
 
 ```
 W = 0.8789, p-value = 3.981e-12
