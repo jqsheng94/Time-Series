@@ -25,9 +25,11 @@ After taking the log transformation, we can clearly see that the time series plo
 
 ### 2.2 First differenced-transformation
 
-![22](https://github.com/jqsheng94/Time-Series/blob/master/Output/4-DiffLogData.png)
+![221](https://github.com/jqsheng94/Time-Series/blob/master/Output/4-DiffLogData.png)
 
 The first differenced of log time series plot (Figure 4) seems stationary. But we need to test it with ACF and PACF. Here are ACF and PACF of the first differenced of the log series: 
+
+![222](https://github.com/jqsheng94/Time-Series/blob/master/Output/5-FirstDiffAcfPacf.png)
 
 The ACF for the first differencing of log U.S air miles (Figure 5) shows that there is a very clearly periodic component at lag 12, 24, 36…, and decays very slowly at each period, not exponentially but say in linear fashion. Thus, we conclude this is a seasonal non-stationary process. Then let’s try taking a difference of order 12 to solve this seasonal non-stationary process.
 
