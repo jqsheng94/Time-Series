@@ -9,6 +9,8 @@ Since the Wright brothers invented the airplane, it has a great influence on hum
 
 ![11](https://github.com/jqsheng94/Time-Series/blob/master/Output/1-Original.png)
 
+![21](https://github.com/jqsheng94/Time-Series/blob/master/Output/2-OrgAcfPacf.png)
+
 
 The time series plot (Figure 1) of the monthly air miles of the US from Jan. 1960 to the end of 1977 shows that the mean of this process changes over time, also the variance is not constant (it fluctuates greatly from the year of 1970). Therefore, this process is non-stationary. Also, the ACF of this process series decays very slowly, which gives the support that the time series is not stationary. 
 
