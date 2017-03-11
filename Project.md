@@ -126,7 +126,9 @@ We can use this model to predict future values.
 
 ## 6. Forecast
 
-Here is the prediction for next 10 months. As we all can see, the 6th, 7th, 8th, points are relatively high within each cycle compare to other points. For some reasons like temperature or weather,   passengers are more willing to travel on summer than other seasons. There is an obvious positive trend in this graph. Although there are many cycles in the time series plots, monthly air passenger miles increase from 10 to 16 over 7 year periods. More and more passengers choose to use transportation airplane to go to other places. So our prediction for next 10 months is also a cycle which increases a little bit compare to year 1977. Those blue lines are predicted values with 2 standard errors. Those form 95% confidence interval for the predicted values. 
+![61](https://github.com/jqsheng94/Time-Series/blob/master/Output/11-prediction.png)
+
+Here is the prediction for next 5 years. As we all can see, the 6th, 7th, 8th, points are relatively high within each cycle compare to other points. For some reasons like temperature or weather,   passengers are more willing to travel on summer than other seasons. There is an obvious positive trend in this graph. Although there are many cycles in the time series plots, monthly air passenger miles increase from 10 to 16 over 7 year periods. More and more passengers choose to use transportation airplane to go to other places. So our prediction for next 5 years will increase significantly compare to the year 1977.
 
 ## 7. Conclusion
 
