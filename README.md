@@ -147,5 +147,3 @@ Hyndman, R.J. (n.d.) Time Series Data Library,
 "http://robjhyndman.com/TSDL/"
 
 "http://robjhyndman.com/tsdldata/data/cryer6.dat"
-
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plot.ly/~jqsheng94/0.embed"></iframe>
